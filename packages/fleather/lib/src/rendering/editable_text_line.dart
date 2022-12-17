@@ -425,6 +425,7 @@ class RenderEditableTextLine extends RenderEditableBox {
   ///
   /// If this is set to an [EdgeInsetsDirectional] object, then [textDirection]
   /// must not be null.
+  @override
   EdgeInsetsGeometry get padding => _padding;
   EdgeInsetsGeometry _padding;
 
