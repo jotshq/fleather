@@ -750,7 +750,7 @@ class RenderEditableTextLine extends RenderEditableBox {
             context, effectiveOffset, _selectionRects!, _selectionColor);
       }
 
-      _paintAnchors(context, effectiveOffset);
+      _paintAnchors(context, offset, effectiveOffset);
 
       if (hasFocus &&
           _cursorController.showCursor.value &&
@@ -778,7 +778,8 @@ class RenderEditableTextLine extends RenderEditableBox {
     return r;
   }
 
-  void _paintAnchors(PaintingContext context, Offset effectiveOffset) {
+  void _paintAnchors(
+      PaintingContext context, Offset offset, Offset effectiveOffset) {
     for (final textAnchor in _textAnchors) {
       final selectionColor = textAnchor.selectionColor;
       if (!intersectsWithSelection(node, textAnchor.selection)) continue;
@@ -805,13 +806,12 @@ class RenderEditableTextLine extends RenderEditableBox {
           affinity: textAnchor.selection.affinity);
       final layerLink = textAnchor.layerLink;
       if (layerLink != null) {
-        final caret = getLocalRectForCaret(textPosition);
-        final anchorOffset = caret.topLeft;
+        final anchorOffset = getOffsetForCaret(textPosition);
 
         context.pushLayer(
             EnhancedLeaderLayer(
                 debugName: 'textAnchor#${textAnchor.hashCode}',
-                offset: anchorOffset + effectiveOffset,
+                offset: anchorOffset + offset,
                 link: layerLink,
                 theaterRectRelativeToLeader: () =>
                     getTheatherRect(anchorOffset)),
