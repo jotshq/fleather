@@ -10,6 +10,8 @@ library fleather;
 export 'package:parchment/parchment.dart';
 
 export 'src/rendering/editor.dart';
+export 'src/rendering/editable_box.dart'
+    show RenderEditableBox, RenderEditableContainerBox;
 export 'src/widgets/controller.dart';
 export 'src/widgets/cursor.dart';
 export 'src/widgets/editor.dart';
