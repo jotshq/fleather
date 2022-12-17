@@ -775,7 +775,8 @@ class RenderEditableTextLine extends RenderEditableBox {
     final theater = _portalTheater();
     final shift = globalToLocal(Offset.zero, ancestor: theater) - offset;
     final r = shift & theater.size;
-    return r;
+    // deflate cause we like it padded
+    return r.deflate(8);
   }
 
   void _paintAnchors(

@@ -136,7 +136,8 @@ class RenderParagraphProxy extends RenderProxyBox
       final theater = _portalTheater!();
       final shift = globalToLocal(Offset.zero, ancestor: theater) /*- offset*/;
       final r = shift & theater.size;
-      return r;
+      // we like it padded!
+      return r.deflate(8);
     }
 
     context.pushLayer(
